@@ -1,8 +1,8 @@
 from flask import Flask, render_template, url_for, request, redirect,Response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from camera import *
-# import cv2
+# from camera import *
+import cv2
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -76,31 +76,31 @@ def update(id):
 
 
 
-def gen(camera):
-    co=0
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')        
+# def gen(camera):
+#     co=0
+#     while True:
+#         frame = camera.get_frame()
+#         yield (b'--frame\r\n'
+#                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')        
     
 
-@app.route('/check')
-def video_feed():
-    return Response(gen(VideoCamera()),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+# @app.route('/check')
+# def video_feed():
+#     return Response(gen(VideoCamera()),
+#                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-# @app.route('/check1')
-# def check1():
-#     cap = cv2.VideoCapture(0)
-#     while 1:
-#         _,frame=cap.read()
-#         cv2.imshow('frame',frame)
-#         if cv2.waitKey(1) & 0xFF == ord("q"):
-#             break
-#     cap.release()
-#     cv2.destroyAllWindows()
-#     return redirect('/')
+@app.route('/check1')
+def check1():
+    cap = cv2.VideoCapture(0)
+    while 1:
+        _,frame=cap.read()
+        cv2.imshow('frame',frame)
+        if cv2.waitKey(1) & 0xFF == ord("q"):
+            break
+    cap.release()
+    cv2.destroyAllWindows()
+    return redirect('/')
 
 
 
