@@ -90,17 +90,17 @@ def update(id):
 #                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-@app.route('/check1')
-def check1():
-    cap = cv2.VideoCapture(0)
-    while 1:
-        _,frame=cap.read()
-        cv2.imshow('frame',frame)
-        if cv2.waitKey(1) & 0xFF == ord("q"):
-            break
-    cap.release()
-    cv2.destroyAllWindows()
-    return redirect('/')
+# @app.route('/check1')
+# def check1():
+#     cap = cv2.VideoCapture(0)
+#     while 1:
+#         _,frame=cap.read()
+#         cv2.imshow('frame',frame)
+#         if cv2.waitKey(1) & 0xFF == ord("q"):
+#             break
+#     cap.release()
+#     cv2.destroyAllWindows()
+#     return redirect('/')
 
 
 
