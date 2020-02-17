@@ -1,7 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect,Response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import logging
 from camera import *
 import cv2
 
@@ -11,7 +10,6 @@ db = SQLAlchemy(app)
 
 from time import time
 
-# abcd
 inde = 0
 
 class Todo(db.Model):
@@ -83,9 +81,7 @@ def gen(camera):
     while True:
         frame = camera.get_frame()
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-        yield render_template('video.html')
-        
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')        
     
 
 @app.route('/check')
