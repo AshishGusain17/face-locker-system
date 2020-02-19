@@ -46,7 +46,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='C:\Users\hp\Desktop\GitHub\face_locker_system\env'
+VIRTUAL_ENV='C:\Users\hp\Desktop\GitHub\face-locker-system\env'
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

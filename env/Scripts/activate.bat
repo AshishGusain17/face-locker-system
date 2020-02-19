@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Users\hp\Desktop\GitHub\face_locker_system\env"
+set "VIRTUAL_ENV=C:\Users\hp\Desktop\GitHub\face-locker-system\env"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

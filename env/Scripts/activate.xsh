@@ -28,7 +28,7 @@ def _deactivate(args):
 _deactivate(["nondestructive"])
 aliases["deactivate"] = _deactivate
 
-$VIRTUAL_ENV = r"C:\Users\hp\Desktop\GitHub\face_locker_system\env"
+$VIRTUAL_ENV = r"C:\Users\hp\Desktop\GitHub\face-locker-system\env"
 
 $_OLD_VIRTUAL_PATH = $PATH
 $PATH = $PATH[:]
