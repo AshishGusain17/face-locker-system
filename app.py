@@ -26,25 +26,7 @@ class Todo(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-    obj=inde
-    # if request.method == 'POST':
-    #     global inde
-    #     inde = inde + 1
-    #     task_content = request.form['content']
-    #     new_task = Todo(content=task_content , number=inde)
-
-    #     try:
-    #         db.session.add(new_task)
-    #         db.session.commit()
-    #         return redirect('/')
-    #     except:
-    #         inde=inde-1
-    #         return 'There was an issue adding your task'
-
-    # else:
-    #     tasks = Todo.query.order_by(Todo.date_created).all()
-    #     return render_template('index.html', tasks=tasks,number=inde)
+    return render_template('signin.html' ,display="")
 
 
 @app.route('/signin', methods=['GET', 'POST'])
@@ -61,20 +43,20 @@ def signin():
                 # ct=ct+1
                 if obj.name == name:
 
-                    if obj.name == name and  obj.email == email:
+                    if obj.email == email:
                         print(obj.name ,name , obj.email , email)
                         ans=pic_confirm(name)
-                        if ans[0] ==True:
-                            # return 
-                            return "profile confirmed"
-                        elif ans[0] == False:
-                            return "fake profile"
+                        if ans ==False:
+                            return render_template('signin.html' , display="Fake profile")
+                        else:
+                            return render_template('confirm.html')
+
                     else:
-                        return "name email does not match"
-            return "no such name exists"
+                        return render_template('signin.html' , display="Credentials does not matches")
+            return render_template('signin.html' , display="No such name exists")
 
         else:
-            return "no data"
+            return render_template('signin.html' , display="Firstly Sign Up")
 
 
 
@@ -93,10 +75,9 @@ def signup():
         try:
             db.session.add(newaccount)
             db.session.commit()
-            return redirect('/')
+            return render_template('signin.html' , display="You are signed up now")
         except:
-            return 'There was an issue adding your account'
-        return redirect('/')
+            return render_template('signin.html' , display="Try again")
 
 
 

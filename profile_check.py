@@ -22,6 +22,7 @@ def pic_confirm(name):
 	time.sleep(2.0)
 	ct=0
 	ret = False
+	predt,predf=0,0
 	while True:
 		# _,frame = vs.read()
 		frame=vs.read()
@@ -32,31 +33,45 @@ def pic_confirm(name):
 		detector.setInput(imageBlob)
 		detections = detector.forward()
 		less=0
+
 		for i in range(0, detections.shape[2]):
 			confidence = detections[0, 0, i, 2]
 			if confidence > less:
 				box = detections[0, 0, i, 3:7] * np.array([600, 449,600,449])
 				(startX, startY, endX, endY) = box.astype("int")
 				less=confidence
-		print(less)
-		if ct>=50 and less>0.8:
+		print(less,len(detections))
+
+		if ct>=30 and less>0.8:
 			cv2.rectangle(frame, (startX, startY), (endX, endY), (0, 0, 255), 2)
-			
 			newframe=frame[startY:endY,startX:endX]
+
+			if predt>=5 :
+				ret=True
+				break
+			if predf>=30:
+				ret=False
+				break
 			try:
 				e2=face_recognition.face_encodings(newframe)[0]
 				ret=face_recognition.compare_faces([e1],e2)
-				break
+				if ret==False:
+					predf=predf+1
+					print("false cases = ",predf)
+				else:
+					predt=predt+1
+					print("true cases = ",predt)
 			except:
 				pass
+
 				
 		ct=ct+1
-		cv2.imshow("Profile-check", frame)	
-		# key = cv2.waitKey(1) & 0xFF
+		cv2.imshow("Profile-check", frame)
 
-		# if key == ord("q"):
-		# 	break
-	print(ret)
+		key = cv2.waitKey(1) & 0xFF
+		if key == ord("q"):
+			break
+
 	cv2.destroyAllWindows()
 	vs.stop()
 	return ret

@@ -1,26 +1,55 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Signup</title>
+<title>Sign Up</title>
+<link rel="shortcut icon" href="../favicon.ico"> 
+<link rel="stylesheet" type="text/css" href="static/css/demo.css" />
+<link rel="stylesheet" type="text/css" href="static/css/style2.css" />
+<link rel="stylesheet" type="text/css" href="static/css/animate-custom.css" />
 {% endblock %}
 
 {% block body %}
-<div class="content">
-    
-    <div class="form">
-        <form action="/signup" method="POST">
-            Name:<br>
-            <input type="text" name="name" id="name" value="has to be unique"><br>
-            Email:<br>
-            <input type="text" name="email" id="email" value="@gmail.com"><br>
-            Mobile number:<br>
-            <input type='number' name='mobile' id ='number' value='123456789' ><br>
-            <input type="submit" value="Next level up">
 
-        </form>
-    </div>
-
-
-
+<div class="container">
+    <section>				
+        <div id="container_demo" >
+            <!-- <a class="hiddenanchor" id="toregister"></a>
+            <a class="hiddenanchor" id="tologin"></a> -->
+            <div id="wrapper">
+                <div id="login" class="animate form">
+                    <form  action="/signup" autocomplete="on" method="POST"> 
+                        <h1> Sign up </h1> 
+                        <p> 
+                            Your username:
+                            <!-- <label for="usernamesignup" class="uname" data-icon="u">Your username</label> -->
+                            <input id="usernamesignup" name="name" required="required" type="text" placeholder="Unique username" />
+                        </p>
+                        <p> 
+                            Email:
+                            <!-- <label for="emailsignup" class="youmail" data-icon="e" > Your email</label> -->
+                            <input id="emailsignup" name="email" required="required" type="text" placeholder="mail@mail.com"/> 
+                        </p>
+                        <p> 
+                            Phone number:
+                            <!-- <label for="password" class="youpasswd" data-icon="p"> Your password </label> -->
+                            <input id="password" name="mobile" required="required" type="number" placeholder="123456789" /> 
+                        </p>
+                        <p class="signin button"> 
+                            <input type="submit" value="Sign up"/> 
+                        </p>
+                        <p class="change_link">  
+                            Already signed up ?
+                            <a href="/signin" class="to_register"> Log in </a>
+                        </p>
+                    </form>
+                </div>
+                
+            </div>
+        </div>  
+    </section>
 </div>
+
+
+
+
 {% endblock %}
